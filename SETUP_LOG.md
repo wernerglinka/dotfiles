@@ -14,6 +14,16 @@ installed tools.
 
 ## 2026-05-16
 
+### Existing repo remotes switched from HTTPS to SSH
+Sixteen repos under `~/Documents/Essays/` and `~/Documents/Projects/`
+had their `origin` flipped from `https://github.com/wernerglinka/...`
+to `git@github.com:wernerglinka/...`. Each conversion was verified by
+running `git fetch origin` immediately after `remote set-url`. Four
+repos were intentionally left alone: `dotfiles` was already SSH;
+`React-is-Awful` is in the cloudstreet-dev org; `web-components/dialog`
+has no remote; `Wordpress/mhac` points at a Pantheon Drush hosting
+endpoint, not GitHub.
+
 ### SSH key generated, on GitHub, signing verified end-to-end
 Werner generated `~/.ssh/id_ed25519` (passphrase set) and ran
 `ssh-add --apple-use-keychain` to cache the passphrase in the macOS
