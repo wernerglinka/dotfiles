@@ -14,6 +14,25 @@ installed tools.
 
 ## 2026-05-16
 
+### Password manager architecture: 1Password as sole live store
+After a long thread reasoning through email exposure, browser
+extensions, Chrome's password manager, Apple Passwords / iCloud
+Keychain, and where passkeys fit, settled on 1Password as the only
+live credential store on this Mac. Chrome's built-in password
+manager and Apple's iCloud Keychain will both be turned off here
+(deletes accepted on iCloud Keychain so nothing lingers locally).
+1Password handles both passwords and passkeys through the same
+locked vault, so there is one credential surface to think about
+across every device.
+
+Brewfile gains `cask "1password"` alongside the existing
+`1password-cli`. Comment on the cli updated to reflect that it now
+talks to the desktop app via biometric unlock rather than being a
+standalone secret store. The decision also implies that primary
+email stays off this Mac (browser or phone only) so that email
+reset flows cannot be combined with a same-machine credential
+read.
+
 ### VS Code extensions captured in dotfiles and installed
 Werner dumped his old Mac's extension list to `extensions.txt` and
 dropped it in the project folder. Moved into the repo at

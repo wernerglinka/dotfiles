@@ -21,7 +21,8 @@ brew "composer"      # PHP dependency manager
 cask "visual-studio-code"
 cask "iterm2"
 cask "obsidian"      # for the Essays/knowledge-base vault
-cask "1password-cli" # 'op' command, used for secrets if/when needed
+cask "1password"     # sole password manager on this Mac (Chrome and iCloud Keychain are deliberately disabled)
+cask "1password-cli" # 'op' command, talks to the 1Password desktop app via biometric unlock
 
 # Explicitly NOT installed on this machine:
 #   - Any finance app or CLI. This is the dev machine in a two-machine split.
