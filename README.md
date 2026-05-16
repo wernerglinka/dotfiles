@@ -42,7 +42,9 @@ Bootstrap, in order:
 6. Writes `~/.ssh/config` from `ssh/config.template` only if no SSH
    config exists yet. Existing configs are never touched.
 7. Initializes the Node toolchain via Volta if Volta is on `PATH`.
-8. Prints the post-bootstrap checklist (SSH key, GitHub upload, remote
+8. Installs the VS Code extensions listed in `vscode/extensions.txt`
+   if the `code` CLI is available (skipped with a warning otherwise).
+9. Prints the post-bootstrap checklist (SSH key, GitHub upload, remote
    switch, npm trusted-publishing migration).
 
 ## Layout
@@ -64,6 +66,15 @@ dotfiles/
     .npmrc               # registry config; NO auth token
   ssh/
     config.template      # ~/.ssh/config template; private keys never live here
+  vscode/
+    extensions.txt       # VS Code extension IDs, one per line
+```
+
+To refresh the captured extension list after installing new ones:
+
+```sh
+code --list-extensions > ~/Documents/Projects/dotfiles/vscode/extensions.txt
+cd ~/Documents/Projects/dotfiles && git add vscode/extensions.txt && git commit
 ```
 
 ## Design choices, named explicitly

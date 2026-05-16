@@ -14,6 +14,18 @@ installed tools.
 
 ## 2026-05-16
 
+### VS Code extensions captured in dotfiles and installed
+Werner dumped his old Mac's extension list to `extensions.txt` and
+dropped it in the project folder. Moved into the repo at
+`vscode/extensions.txt`. Bootstrap grew an `install_vscode_extensions`
+phase that runs `code --install-extension --force` against each line,
+skipping blank and `#`-prefixed entries. README updated with the new
+phase and the refresh command (`code --list-extensions >
+vscode/extensions.txt`). On this Mac, 41 of 43 extensions installed
+cleanly; two had unresolvable marketplace IDs and were commented out
+in the file with a 2026-05-16 note rather than deleted, so the history
+is preserved.
+
 ### Existing repo remotes switched from HTTPS to SSH
 Sixteen repos under `~/Documents/Essays/` and `~/Documents/Projects/`
 had their `origin` flipped from `https://github.com/wernerglinka/...`

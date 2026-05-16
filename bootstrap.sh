@@ -90,6 +90,28 @@ ensure_volta_toolchain() {
   fi
 }
 
+install_vscode_extensions() {
+  local list="$REPO/vscode/extensions.txt"
+  [[ -f "$list" ]] || return 0
+  if ! command -v code >/dev/null 2>&1; then
+    warn "VS Code 'code' command not on PATH. Skipping extensions. After"
+    warn "launching VS Code, run Cmd-Shift-P 'Shell Command: Install code"
+    warn "command in PATH', then re-run this script."
+    return 0
+  fi
+  log "Installing VS Code extensions from $list."
+  while IFS= read -r ext; do
+    case "$ext" in
+      ''|'#'*) continue ;;
+    esac
+    if code --install-extension "$ext" --force >/dev/null 2>&1; then
+      printf '  %s\n' "$ext"
+    else
+      warn "  failed: $ext"
+    fi
+  done < "$list"
+}
+
 post_checklist() {
   cat <<'EOF'
 
@@ -133,6 +155,7 @@ main() {
   link_dotfiles
   ensure_ssh_config
   ensure_volta_toolchain
+  install_vscode_extensions
   post_checklist
 }
 
