@@ -7,11 +7,13 @@
 # Example:
 #   346112+wernerglinka@users.noreply.github.com ssh-ed25519 AAAA...
 #
-# Populated by bootstrap.sh after the ed25519 key is generated, so this
-# file may be empty on a fresh checkout. To add the current machine's key
-# manually:
+# Populated by hand after the ed25519 key is generated, so this file may
+# be empty on a fresh checkout. The email is hardcoded because the base
+# ~/.gitconfig is identity-free by design and `git config --get
+# user.email` only resolves inside the dev trees. To add the current
+# machine's key:
 #
 #   printf '%s %s\n' \
-#     "$(git config --get user.email)" \
+#     "346112+wernerglinka@users.noreply.github.com" \
 #     "$(cat ~/.ssh/id_ed25519.pub)" \
 #     >> ~/.config/git/allowed_signers

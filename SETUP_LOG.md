@@ -14,6 +14,23 @@ installed tools.
 
 ## 2026-05-16
 
+### Bootstrap ran cleanly
+Werner ran `bootstrap.sh` in his own terminal. Homebrew installed,
+`brew bundle` installed 13 dependencies (9 brew formulae plus 4 casks),
+all seven dotfiles symlinked, `~/.ssh/config` written from template
+(left as a real file so machine-local entries can be added without
+committing), Volta installed Node 24.15.0 and npm 11.14.1. Verified
+that a fresh interactive shell resolves brew, git, gh, volta, node,
+npm, php, composer, jq, rg, fd, and tree, all from expected
+locations.
+
+### Fixed allowed_signers populate command
+Bootstrap's post-checklist and the `allowed_signers` header comment
+both used `$(git config --get user.email)`, which returns empty when
+run outside the dev directories because the base `~/.gitconfig` is
+identity-free by design. Hardcoded the noreply email in both places
+so the populate command works from any working directory.
+
 ### bootstrap.sh fixed: drop NONINTERACTIVE=1
 First attempt to run bootstrap.sh through the Claude Code tool channel
 failed at Homebrew install. The script had `NONINTERACTIVE=1`, which

@@ -105,9 +105,12 @@ Bootstrap complete. Remaining manual steps:
        - once as a Signing key
      Public key file: ~/.ssh/id_ed25519.pub
 
-  3. Populate the allowed_signers file so local commit verification works:
+  3. Populate the allowed_signers file so local commit verification works.
+     Email is hardcoded here because the base ~/.gitconfig is identity-free
+     by design; `git config --get user.email` only resolves inside the dev
+     trees:
        printf '%s %s\n' \
-         "$(git config --get user.email)" \
+         "346112+wernerglinka@users.noreply.github.com" \
          "$(cat ~/.ssh/id_ed25519.pub)" \
          >> ~/.config/git/allowed_signers
 
