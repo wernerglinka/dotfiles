@@ -22,6 +22,13 @@ config file applies the changes. Existing real files in `$HOME` are
 backed up to `*.bak.<timestamp>` before being replaced with symlinks, so
 nothing is silently overwritten.
 
+`bootstrap.sh` must be run interactively in a real terminal. The
+Homebrew install asks you to press RETURN once and then prompts for
+your sudo password. Cask installs may also pop up macOS Gatekeeper
+prompts the first time. Running the script through a non-interactive
+channel (CI, a tool that cannot forward a password prompt) will fail
+at the Homebrew install step.
+
 ## What it does
 
 Bootstrap, in order:

@@ -24,9 +24,9 @@ ensure_xcode_clt() {
 }
 
 ensure_homebrew() {
-  if ! command -v brew >/dev/null 2>&1; then
-    log "Installing Homebrew."
-    NONINTERACTIVE=1 /bin/bash -c \
+  if ! command -v brew >/dev/null 2>&1 && [[ ! -x /opt/homebrew/bin/brew ]]; then
+    log "Installing Homebrew. You will be prompted to press RETURN and then for your sudo password."
+    /bin/bash -c \
       "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   fi
   # shellcheck disable=SC1091

@@ -14,6 +14,21 @@ installed tools.
 
 ## 2026-05-16
 
+### bootstrap.sh fixed: drop NONINTERACTIVE=1
+First attempt to run bootstrap.sh through the Claude Code tool channel
+failed at Homebrew install. The script had `NONINTERACTIVE=1`, which
+causes the Homebrew installer to require passwordless sudo or a
+preconfigured `SUDO_ASKPASS`. Standard admin users have neither, and a
+password prompt cannot be passed through the tool channel.
+
+Fix: drop `NONINTERACTIVE=1` so the Homebrew installer runs in its
+normal interactive mode (press RETURN, then enter sudo password). The
+script is now intended to be invoked by a human in a real terminal,
+which matches its purpose on a fresh Mac. README updated to call this
+out explicitly. Also tightened the install check to look for either
+`brew` on PATH or `/opt/homebrew/bin/brew` on disk before deciding to
+install.
+
 ### Initial local commit
 Set the dotfiles repo's local `user.name` and `user.email` to the dev
 identity so the very first commit has correct authorship even though
