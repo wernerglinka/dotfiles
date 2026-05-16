@@ -14,6 +14,25 @@ installed tools.
 
 ## 2026-05-16
 
+### SSH key generated, on GitHub, signing verified end-to-end
+Werner generated `~/.ssh/id_ed25519` (passphrase set) and ran
+`ssh-add --apple-use-keychain` to cache the passphrase in the macOS
+login Keychain. Uploaded the public key to GitHub twice via `gh
+ssh-key add`: as `authentication` and as `signing`, titled
+"Werners-Mac-mini (auth)" and "Werners-Mac-mini (signing)". Seeded
+`~/.ssh/known_hosts` with github.com's ed25519 host key; fingerprint
+matches GitHub's published value
+`SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU`. Appended the
+machine's public key to `allowed_signers` so `git verify-commit`
+works locally.
+
+End-to-end verification: `ssh -T git@github.com` returns "Hi
+wernerglinka!", and the first signed commit (03168d8) shows `Good
+"git" signature ... with ED25519 key
+SHA256:fuJxyqJ1fabxUecmJZOk3RHmpb+F+pXXGaFZIwgXIWk` via
+`git log --show-signature`. Keychain integration is transparent: no
+passphrase prompt and no GUI Keychain dialog on commit.
+
 ### Bootstrap ran cleanly
 Werner ran `bootstrap.sh` in his own terminal. Homebrew installed,
 `brew bundle` installed 13 dependencies (9 brew formulae plus 4 casks),
