@@ -1,0 +1,57 @@
+# ~/.gitconfig — base config. Identity-bearing values live in .gitconfig-dev
+# and are pulled in by the conditional includes at the bottom.
+
+[user]
+  name = Werner Glinka
+  # email and signingkey come from ~/.gitconfig-dev via includeIf below
+
+[init]
+  defaultBranch = main
+
+[core]
+  excludesfile = ~/.gitignore_global
+  editor = vim
+
+[pull]
+  rebase = false
+  ff = only
+
+[push]
+  default = simple
+  autoSetupRemote = true
+
+[fetch]
+  prune = true
+
+[color]
+  ui = auto
+
+[diff]
+  algorithm = histogram
+  colorMoved = default
+
+[merge]
+  conflictstyle = zdiff3
+
+[rerere]
+  enabled = true
+
+[gpg]
+  format = ssh
+
+[gpg "ssh"]
+  allowedSignersFile = ~/.config/git/allowed_signers
+
+[commit]
+  gpgsign = true
+
+[tag]
+  gpgsign = true
+
+# Repositories under these trees get the dev identity (email, signing key).
+# Trailing slash is required so git treats it as a directory prefix match.
+[includeIf "gitdir:~/Documents/Projects/"]
+  path = ~/.gitconfig-dev
+
+[includeIf "gitdir:~/Documents/Essays/"]
+  path = ~/.gitconfig-dev

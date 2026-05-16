@@ -1,0 +1,17 @@
+# ~/.config/git/allowed_signers — used by `git log --show-signature` and
+# `git verify-commit` to confirm SSH-signed commits came from a key you
+# trust. Without this file, signing works but local verification shows
+# "no principal matched".
+#
+# Format: <email-or-pattern> <ssh-pubkey-line>
+# Example:
+#   346112+wernerglinka@users.noreply.github.com ssh-ed25519 AAAA...
+#
+# Populated by bootstrap.sh after the ed25519 key is generated, so this
+# file may be empty on a fresh checkout. To add the current machine's key
+# manually:
+#
+#   printf '%s %s\n' \
+#     "$(git config --get user.email)" \
+#     "$(cat ~/.ssh/id_ed25519.pub)" \
+#     >> ~/.config/git/allowed_signers

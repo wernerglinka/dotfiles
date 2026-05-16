@@ -1,0 +1,13 @@
+# Repo-level ignores. Nothing personal or secret should ever land in this
+# repo; the dotfiles themselves are public-by-design.
+
+# macOS junk
+.DS_Store
+._*
+
+# Bootstrap backups (created if a previous real file gets replaced by a symlink)
+*.bak
+*.bak.*
+
+# Optional local-only additions that should not be shared
+local/

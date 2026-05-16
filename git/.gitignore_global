@@ -1,0 +1,28 @@
+# Global ignores. Project-specific things (node_modules, dist, build, etc.)
+# belong in each project's own .gitignore. This file is for cross-cutting
+# OS, editor, and secret-y files that have no business in any repo.
+
+# macOS
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+.AppleDouble
+.LSOverride
+
+# Windows (in case a repo is shared with a Windows collaborator)
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Editor and IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Environment files — must never be committed
+.env
+.env.local
+.env.*.local

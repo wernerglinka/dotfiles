@@ -1,0 +1,7 @@
+# ~/.gitconfig-dev — identity used for repos under the dev directories.
+# Sourced via includeIf in ~/.gitconfig. Kept in its own file so the base
+# config stays identity-free and the dev identity is easy to swap if needed.
+
+[user]
+  email = 346112+wernerglinka@users.noreply.github.com
+  signingkey = ~/.ssh/id_ed25519.pub
