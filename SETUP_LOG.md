@@ -14,6 +14,29 @@ installed tools.
 
 ## 2026-05-16
 
+### SSH and commit signing moved into 1Password
+Imported the ed25519 keypair into 1Password as an SSH Key item
+(passphrase entered for the last time; inside the vault the key is
+unlocked by Touch ID). 1Password auto-enabled its SSH agent when the
+key item was added. Cleaned up `~/.ssh/config` and the dotfiles
+template to a single `Host *` block pointing at 1Password's agent
+socket. Git signing routed through `op-ssh-sign` so commits sign via
+the vault rather than reading the private key from disk.
+
+End-to-end verification before deletion: `ssh -T git@github.com`
+returns "Hi wernerglinka!", commit 200f0f1 was signed via op-ssh-sign
+and verified locally against the same SHA256:fuJxyqJ1... fingerprint,
+push succeeded over SSH. After that, `~/.ssh/id_ed25519` was moved
+aside and SSH was re-tested with the file absent; still worked. The
+private key file then got securely deleted. Public half stays at
+`~/.ssh/id_ed25519.pub` because `user.signingkey` in `.gitconfig-dev`
+references that path; op-ssh-sign uses the public key only to
+identify which key in the vault to use.
+
+Net change: the SSH private key now exists only inside the locked
+1Password vault. A process running as Werner has no way to obtain
+or use the key without explicit Touch ID approval.
+
 ### Password manager architecture: 1Password as sole live store
 After a long thread reasoning through email exposure, browser
 extensions, Chrome's password manager, Apple Passwords / iCloud
