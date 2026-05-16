@@ -65,6 +65,7 @@ link_dotfiles() {
   link "$REPO/git/.gitignore_global"  "$HOME/.gitignore_global"
   link "$REPO/git/allowed_signers"    "$HOME/.config/git/allowed_signers"
   link "$REPO/npm/.npmrc"             "$HOME/.npmrc"
+  link "$REPO/claude/CLAUDE.md"       "$HOME/Documents/CLAUDE.md"
 }
 
 ensure_ssh_config() {

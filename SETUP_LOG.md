@@ -14,6 +14,26 @@ installed tools.
 
 ## 2026-05-16
 
+### Added ~/Documents/CLAUDE.md
+Claude Code auto-loads CLAUDE.md files walking up from the working
+directory. Since all work on this Mac lives under `~/Documents` and
+Claude is the primary collaborator, a CLAUDE.md at that level gives
+every future session the load-bearing context unconditionally
+(memory is opportunistic; this file is guaranteed). Composes with
+the project-specific essay file at
+`~/Documents/Essays/knowledge-base/CLAUDE.md` rather than replacing
+it.
+
+Canonical file lives in the dotfiles repo at `claude/CLAUDE.md` and
+is symlinked to `~/Documents/CLAUDE.md`. Bootstrap link step
+extended to create the symlink on future machines. Contents:
+identity, stack and style (Node 22 default, JSDoc not TypeScript,
+node:test for new work, PHP legacy only), voice rules, hard
+constraints (essay path, two-machine separation, Essays/ read-only),
+security architecture (1Password sole credential store including
+the SSH key, Chrome and iCloud Keychain dormant, email off this
+Mac), and a pointer at the dotfiles repo as source of truth.
+
 ### SSH and commit signing moved into 1Password
 Imported the ed25519 keypair into 1Password as an SSH Key item
 (passphrase entered for the last time; inside the vault the key is

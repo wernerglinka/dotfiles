@@ -68,6 +68,8 @@ dotfiles/
     config.template      # ~/.ssh/config template; private keys never live here
   vscode/
     extensions.txt       # VS Code extension IDs, one per line
+  claude/
+    CLAUDE.md            # symlinked to ~/Documents/CLAUDE.md, auto-loaded by Claude Code
 ```
 
 To refresh the captured extension list after installing new ones:
