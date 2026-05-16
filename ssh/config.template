@@ -1,18 +1,11 @@
 # Template for ~/.ssh/config.
 # bootstrap.sh copies this to ~/.ssh/config only if no config file exists
 # there already. Private keys are never committed; only this template is.
+#
+# SSH on this Mac uses 1Password as its SSH agent. The private key lives
+# inside the locked 1Password vault, not at ~/.ssh/id_ed25519. Each
+# connection prompts for Touch ID via 1Password.
 
-Host github.com
-  HostName github.com
-  User git
-  IdentityFile ~/.ssh/id_ed25519
-  IdentitiesOnly yes
-  AddKeysToAgent yes
-  UseKeychain yes
-
-# Defaults for all other hosts. UseKeychain stores the passphrase in
-# the macOS Keychain so you only type it once per reboot.
 Host *
-  AddKeysToAgent yes
-  UseKeychain yes
+  IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
   IdentitiesOnly yes
