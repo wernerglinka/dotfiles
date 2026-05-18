@@ -55,8 +55,12 @@ the user about choices that genuinely require input.
   (Wi-Fi passwords kept).
 - The ed25519 SSH private key lives only inside the 1Password
   vault. `~/.ssh/config` routes SSH through 1Password's agent
-  socket, and git's `gpg.ssh.program` is `op-ssh-sign`, so SSH
-  connections and signed commits both prompt for Touch ID.
+  socket, and git's `gpg.ssh.program` is `op-ssh-sign`. The SSH
+  agent prompts on first use per (application, terminal session)
+  pair and remembers approval until 1Password auto-locks (10
+  minutes idle, or immediately when the device sleeps or locks).
+  1Password unlocks with Touch ID, so Touch ID remains the root
+  of trust even when signing operations do not prompt directly.
 - Primary email is not on this Mac. Webmail in Chrome or the phone.
 - VS Code and Chrome extension lists are kept short and audited.
   When asked to install anything that touches credentials, surface
